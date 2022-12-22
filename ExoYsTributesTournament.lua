@@ -14,7 +14,7 @@
 -- 2) Players can invite themself / or be added (Do you get @name from people in chat in all cases? ) 
 -- 3) Define Rounds to play   <---|
 -- 4) Record Outcomes  -----------|
--- 5) Output Rankings
+-- 5) Output Rankings 
 
 
 
@@ -23,6 +23,33 @@ TributesTournament = TributesTournament or {}
 local ToTT = TributesTournament
 local EM = GetEventManager() 
 local WM = GetWindowManager()
+
+
+
+
+
+--[[ --------------------- ]]
+--[[ --- Chat Commands --- ]]
+--[[ --------------------- ]]
+
+
+local function InitTournament(id) 
+
+end 
+SLASH_COMMANDS["/tott_init"] = InitTournament
+
+
+local function StartTournament(id) 
+
+end 
+SLASH_COMMANDS["/tott_start"] = StartTournament
+
+
+local function FinishTournament(id) 
+
+end 
+SLASH_COMMANDS["/tott_finish"] = FinishTournament() 
+
 
 
 --[[ ------------------ ]]
