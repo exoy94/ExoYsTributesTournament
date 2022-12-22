@@ -65,7 +65,14 @@ local function AddPlayer( name )
     T.gamesPlayed[num] ={}
 end 
 
+local function GetPlayerId(name) 
+    if ZO_IsTableEmpty(T) then return end 
 
+    for k, v in ipairs(T.player) do 
+        if v == name then return k 
+    end 
+
+end
 
 --[[ --------------------- ]]
 --[[ --- Chat Commands --- ]]
