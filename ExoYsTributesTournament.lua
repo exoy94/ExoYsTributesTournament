@@ -25,31 +25,47 @@ local EM = GetEventManager()
 local WM = GetWindowManager()
 
 
+local T = {}
+local invite = false
 
+local function InitTournament(id) 
+    T = {
+        id = id,
+        status = 'invite',
+        playerRef = {}, 
+        score = {}, 
+        numPlayers = 0, 
+        heighestScore = 0, 
+        round = {}, 
+        gamesPlayed = {}, 
+    }
+    invite = true
+end 
+
+
+local function StartTournament() 
+    if ZO_IsTableEmpty(T) then return end
+end 
+
+
+local function NextRound() 
+    if ZO_IsTableEmpty(T) then return end
+end 
+
+
+local function FinishTournament() 
+    if ZO_IsTableEmpty(T) then return end
+end 
 
 
 --[[ --------------------- ]]
 --[[ --- Chat Commands --- ]]
 --[[ --------------------- ]]
 
-
-local function InitTournament(id) 
-
-end 
 SLASH_COMMANDS["/tott_init"] = InitTournament
-
-
-local function StartTournament(id) 
-
-end 
 SLASH_COMMANDS["/tott_start"] = StartTournament
-
-
-local function FinishTournament(id) 
-
-end 
-SLASH_COMMANDS["/tott_finish"] = FinishTournament() 
-
+SLASH_COMMANDS["/tott_next"] = NextRound
+SLASH_COMMANDS["/tott_finish"] = FinishTournament
 
 
 --[[ ------------------ ]]
