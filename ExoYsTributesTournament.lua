@@ -34,7 +34,7 @@ local function InitTournament(id)
         status = 'invite',
         player = {}, 
         score = {}, 
-        numPlayers = 0, 
+        numPlayer = 0, 
         heighestScore = 0, 
         round = {}, 
         gamesPlayed = {}, 
@@ -59,11 +59,13 @@ end
 
 
 local function AddPlayer( name ) 
-    local num = T.numPlayers + 1
+    local num = T.numPlayer + 1
     T.player[num] = name
     T.score[num] = 0
     T.gamesPlayed[num] ={}
+    T.numPlayer = num
 end 
+
 
 local function GetPlayerId(name) 
     if ZO_IsTableEmpty(T) then return end 
