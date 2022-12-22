@@ -58,6 +58,12 @@ local function FinishTournament()
 end 
 
 
+local function AddPlayer( name ) 
+    local num = T.numPlayers + 1
+    T.player[num] = name
+    T.score[num] = 0
+    T.gamesPlayed[num] ={}
+end 
 
 
 
