@@ -32,7 +32,7 @@ local function InitTournament(id)
     T = {
         id = id,
         status = 'invite',
-        playerRef = {}, 
+        player = {}, 
         score = {}, 
         numPlayers = 0, 
         heighestScore = 0, 
@@ -58,6 +58,9 @@ local function FinishTournament()
 end 
 
 
+
+
+
 --[[ --------------------- ]]
 --[[ --- Chat Commands --- ]]
 --[[ --------------------- ]]
@@ -66,6 +69,22 @@ SLASH_COMMANDS["/tott_init"] = InitTournament
 SLASH_COMMANDS["/tott_start"] = StartTournament
 SLASH_COMMANDS["/tott_next"] = NextRound
 SLASH_COMMANDS["/tott_finish"] = FinishTournament
+
+
+--[[ -------------------- ]]
+--[[ --- Chat Handler --- ]]
+--[[ -------------------- ]]
+
+
+local function OnChatEvent() 
+    if not invite then return end 
+
+    local inviteStr = ZO_StringFormat('+ToTT_<<1>>', T.id )
+
+    if message = inviteStr then 
+        AddPlayer(playerName) 
+    end 
+end 
 
 
 --[[ ------------------ ]]
