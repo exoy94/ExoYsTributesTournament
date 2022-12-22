@@ -43,13 +43,15 @@ local function InitTournament(id)
 end 
 
 
-local function StartTournament() 
+local function NextRound() 
     if ZO_IsTableEmpty(T) then return end
 end 
 
 
-local function NextRound() 
+local function StartTournament() 
     if ZO_IsTableEmpty(T) then return end
+    invite = false
+    NextRound() 
 end 
 
 
@@ -69,12 +71,14 @@ end
 
 local function GetPlayerId(name) 
     if ZO_IsTableEmpty(T) then return end 
-
     for k, v in ipairs(T.player) do 
         if v == name then return k 
     end 
-
 end
+
+
+
+
 
 --[[ --------------------- ]]
 --[[ --- Chat Commands --- ]]
