@@ -26,6 +26,7 @@ local WM = GetWindowManager()
 
 
 local T = {}
+local R = {}
 local invite = false
 
 local function InitTournament(id) 
@@ -44,17 +45,27 @@ local function InitTournament(id)
 end 
 
 
+local function IsOdd(n) 
+    return n%2 == 1 
+end 
+
+
+--Swiss Tournament
+local function FirstRound() 
+    local Player = Zo_TableShallowCopy(T.player) 
+    
+
+end
+
 local function NextRound() 
     if ZO_IsTableEmpty(T) then return end
-
-
 end 
 
 
 local function StartTournament() 
     if ZO_IsTableEmpty(T) then return end
     invite = false
-    NextRound() 
+    FirstRound() 
 end 
 
 
@@ -83,8 +94,6 @@ local function GetPlayerId(name)
         if v == name then return k 
     end 
 end
-
-
 
 
 
