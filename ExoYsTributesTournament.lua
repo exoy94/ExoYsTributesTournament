@@ -57,6 +57,13 @@ local function CreateGui()
     return {back, ranking, round}
 end 
 
+local function PrintRanking() 
+    local output = ""
+    for rank, id in ipairs(T.ranking) do 
+        output = output..zo_strformat("[<<1>>] <<2>> \n", rank, T.player[id])  
+    end 
+    G.ranking:SetText(output) 
+end 
 
 
 local function IsOdd(n) 
