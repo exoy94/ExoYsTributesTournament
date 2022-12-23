@@ -57,6 +57,19 @@ local function CreateGui()
     return {back, ranking, round}
 end 
 
+
+local function AdjustGuiSize() 
+
+    local width = G.ranking:GetTextWidth() 
+    local height = G.ranking:GetTextHeight() 
+
+    for control, _ in pairs(G) do 
+        control:SetDimensions(width, height) 
+    end 
+    
+end
+
+
 local function PrintRanking() 
     local output = ""
     for rank, id in ipairs(T.ranking) do 
@@ -139,6 +152,8 @@ end
 local function StartTournament() 
     if ZO_IsTableEmpty(T) then return end
     invite = false
+    PrintRanking() 
+    AdjustGuiSize() 
     FirstRound() 
 end 
 
