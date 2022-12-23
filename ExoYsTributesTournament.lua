@@ -50,7 +50,14 @@ local function IsOdd(n)
 end 
 
 
---Swiss Tournament
+local function GetPlayerId(name) 
+    if ZO_IsTableEmpty(T) then return end 
+    for k, v in ipairs(T.player) do 
+        if v == name then return k 
+    end 
+end
+
+
 local function FirstRound() 
     local Player = {} 
     local PausePlayer = 0
@@ -79,6 +86,8 @@ end
 
 local function NextRound() 
     if ZO_IsTableEmpty(T) then return end
+    -- Swiss Round Determination
+
 end 
 
 
@@ -91,29 +100,19 @@ end
 
 local function CloseRound() 
     if ZO_IsTableEmpty(T) then return end
+    --Check if all games were played
+    --TODO update Ranking
 end
 
 
 local function FinishTournament() 
     if ZO_IsTableEmpty(T) then return end
+    --TODO Delete Table 
 end 
 
 
-local function AddPlayer( name ) 
-    local num = T.numPlayer + 1
-    T.player[num] = name
-    T.score[num] = 0
-    T.gamesPlayed[num] ={}
-    T.numPlayer = num
-end 
 
 
-local function GetPlayerId(name) 
-    if ZO_IsTableEmpty(T) then return end 
-    for k, v in ipairs(T.player) do 
-        if v == name then return k 
-    end 
-end
 
 
 
@@ -131,6 +130,13 @@ SLASH_COMMANDS["/tott_finish"] = FinishTournament
 --[[ --- Chat Handler --- ]]
 --[[ -------------------- ]]
 
+local function AddPlayer( name ) 
+    local num = T.numPlayer + 1
+    T.player[num] = name
+    T.score[num] = 0
+    T.gamesPlayed[num] ={}
+    T.numPlayer = num
+end 
 
 local function OnChatEvent() 
     if not invite then return end 
