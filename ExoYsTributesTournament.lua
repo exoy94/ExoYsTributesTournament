@@ -66,7 +66,7 @@ local function AdjustGuiSize()
     for control, _ in pairs(G) do 
         control:SetDimensions(width, height) 
     end 
-    
+
 end
 
 
@@ -89,6 +89,15 @@ local function GetPlayerId(name)
     for k, v in ipairs(T.player) do 
         if v == name then return k 
     end 
+end
+
+
+local function PrintRound() 
+    local output = ""
+    for k,v in ipairs(R) do 
+        output = output..zo_strformat("[<<1>>] <<2>> VS <<3>>\n", k, T.player[v[1]], T.player[v[2]])  
+    end 
+    G.ranking:SetText(output)     
 end
 
 
