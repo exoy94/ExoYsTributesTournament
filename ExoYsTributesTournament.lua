@@ -18,15 +18,17 @@
 
 
 
-TributesTournament = TributesTournament or {}
+--TributesTournament = TributesTournament or {}
 
-local ToTT = TributesTournament
+local Name = "ExoYsTributesTournament"
+--local ToTT = TributesTournament
 local EM = GetEventManager() 
 local WM = GetWindowManager()
 
 
 local T = {}
 local R = {}
+local G = {}
 local invite = false
 
 local function InitTournament(id) 
@@ -43,6 +45,18 @@ local function InitTournament(id)
     }
     invite = true
 end 
+
+
+local function CreateGui()  
+    local win = WM:CreateTopLevelWindow( Name.."Window" ) 
+    local ctrl = WM:CreateControl( Name.."Control", win, CT_CONTROL )
+    local back = WM:CreateControl( Name.."Control", ctrl, CT_BACKDROP )
+    local ranking = WM:CreateControl( Name.."Control", ctrl, CT_LABEL )
+    local round = WM:CreateControl( Name.."Round", ctrl, CT_LABEL)
+
+    return {back, ranking, round}
+end 
+
 
 
 local function IsOdd(n) 
@@ -179,18 +193,19 @@ end
 
 local function Initialize() 
 
-    -- Gui window like LGM
-
-
+    G = CreateGui() 
+    
+    --TODO Event for Chat Listener for Auto Invite 
 
 end 
 
 
 local function OnAddonLoaded(_, addonName) 
-    if addonName = then 
-        Initialize() 
-        -- Unregister Event 
+    if addonName = Name then 
+        EM:UnregisterForEvent(Name, EVENT_ADDON_LOADED)
+        Initialize()
     end 
 end
 
+EM:RegisterForEvent(Name, EVENT_ADDON_LOADED, OnAddonLoaded)
 -- Register Event
