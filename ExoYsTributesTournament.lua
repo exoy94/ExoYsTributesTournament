@@ -38,6 +38,7 @@ local function InitTournament(id)
         heighestScore = 0, 
         round = {}, 
         gamesPlayed = {}, 
+        ranking = {}, 
     }
     invite = true
 end 
@@ -45,6 +46,8 @@ end
 
 local function NextRound() 
     if ZO_IsTableEmpty(T) then return end
+
+
 end 
 
 
@@ -53,6 +56,11 @@ local function StartTournament()
     invite = false
     NextRound() 
 end 
+
+
+local function CloseRound() 
+    if ZO_IsTableEmpty(T) then return end
+end
 
 
 local function FinishTournament() 
