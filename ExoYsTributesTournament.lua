@@ -86,7 +86,31 @@ end
 
 local function NextRound() 
     if ZO_IsTableEmpty(T) then return end
+
+
+    local Available = {}
+    for k,v in ipairs( T.player) do
+        Available[k] = true
+    end
     -- Swiss Round Determination
+    local Player
+    local Opponent
+    for rank, playerId in ipairs(T.ranking) do
+        --TODO handle last match in special way 
+        if Available[playerId] then 
+            Available[playerId] = false 
+            for k,v in ipairs(Available) do 
+                if v then 
+                    --TODO check if they already played 
+                    Opponent = k 
+                    break
+                end               
+            end 
+            table.insert(R, {[1] = playerId, [2] = Opponent})
+            Available[playerId] = false 
+            Available[Opponent] = false 
+        end 
+    end 
 
 end 
 
@@ -102,6 +126,7 @@ local function CloseRound()
     if ZO_IsTableEmpty(T) then return end
     --Check if all games were played
     --TODO update Ranking
+    --Clear Round-Table
 end
 
 
@@ -109,13 +134,6 @@ local function FinishTournament()
     if ZO_IsTableEmpty(T) then return end
     --TODO Delete Table 
 end 
-
-
-
-
-
-
-
 
 
 --[[ -------------------- ]]
@@ -146,6 +164,7 @@ end
 
 SLASH_COMMANDS["/tott_init"] = InitTournament
 SLASH_COMMANDS["/tott_start"] = StartTournament
+SLASH_COMMANDS["/tott_close"] = CloseRound
 SLASH_COMMANDS["/tott_next"] = NextRound
 SLASH_COMMANDS["/tott_finish"] = FinishTournament
 
