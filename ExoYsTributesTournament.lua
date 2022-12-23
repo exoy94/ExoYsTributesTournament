@@ -52,10 +52,30 @@ end
 
 --Swiss Tournament
 local function FirstRound() 
-    local Player = Zo_TableShallowCopy(T.player) 
-    
-
+    local Player = {} 
+    local PausePlayer = 0
+    local Num = T.numPlayer 
+    for i = 1,Num do 
+        table.insert( Player, i)
+    end 
+    if IsOdd(Num) then 
+        PausePlayer = math.random(Num)
+        table.remove( Player, PausePlayer)
+        Num = Num - 1
+    end
+    for i = 1, Num/2 do 
+        table.insert( R, {} )
+    end
+    for k, v in ipairs(R) do 
+        v[1] = math.random( Num )
+        table.remove( Player, v[1])
+        Num = Num - 1
+        v[2] = math.random(Num)
+        table.remove( Player, v[2])
+        Num = Num - 1
+    end 
 end
+
 
 local function NextRound() 
     if ZO_IsTableEmpty(T) then return end
