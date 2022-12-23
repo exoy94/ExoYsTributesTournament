@@ -116,14 +116,6 @@ end
 
 
 
---[[ --------------------- ]]
---[[ --- Chat Commands --- ]]
---[[ --------------------- ]]
-
-SLASH_COMMANDS["/tott_init"] = InitTournament
-SLASH_COMMANDS["/tott_start"] = StartTournament
-SLASH_COMMANDS["/tott_next"] = NextRound
-SLASH_COMMANDS["/tott_finish"] = FinishTournament
 
 
 --[[ -------------------- ]]
@@ -148,6 +140,19 @@ local function OnChatEvent()
     end 
 end 
 
+--[[ --------------------- ]]
+--[[ --- Chat Commands --- ]]
+--[[ --------------------- ]]
+
+SLASH_COMMANDS["/tott_init"] = InitTournament
+SLASH_COMMANDS["/tott_start"] = StartTournament
+SLASH_COMMANDS["/tott_next"] = NextRound
+SLASH_COMMANDS["/tott_finish"] = FinishTournament
+
+SLASH_COMMANDS["/tott_manual"] = function(accountName) 
+    if not invite then return end 
+    AddPlayer(accountName)
+end 
 
 --[[ ------------------ ]]
 --[[ --- Initialize --- ]]
